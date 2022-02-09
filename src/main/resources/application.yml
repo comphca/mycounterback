@@ -1,0 +1,46 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123
+    url: jdbc:mysql://localhost:3306/counter?characterEncoding=utf-8
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 1000
+    pool-max-wait: 3
+    pool-max-idle: 10
+    pool-max-total: 10
+mybatis:
+  type-aliases-package: com.comphca.counter.dao
+  # 下面的配置在对应的数据库表名驼峰对应，不然查出来为null
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mappers/*.xml
+
+logging:
+  level:
+    com.comphca.counter.dao: debug
+
+#缓存过期时间,cacheexpire等都是自定义的，单位都是秒
+cacheexpire:
+  captcha: 100
+  account: 3600
+  order: 36000
+
+#机器位置信息
+counter:
+  id: 1000
+  #机房ID
+  dataCenterId: 0
+  #机柜ID
+  workerId: 0
+  checksum: com.comphca.counter.thirdpart.checksum.ByteCheckSum
+  bodycodec: com.comphca.counter.thirdpart.codec.BodyCodec
+  sendip: 127.0.0.1
+  sendport: 8091
+  msgdecodec: com.comphca.counter.thirdpart.codec.MsgCodec
+  Gatewayid: 1001
+server:
+  address: 127.0.0.1
