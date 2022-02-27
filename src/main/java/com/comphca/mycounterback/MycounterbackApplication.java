@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication
+@MapperScan("com.comphca.mycounterback.dao")
 public class MycounterbackApplication {
 
     public static void main(String[] args) {

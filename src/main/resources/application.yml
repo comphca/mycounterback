@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123
-    url: jdbc:mysql://localhost:3306/counter?characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/mycounter?characterEncoding=utf-8
   redis:
     host: 127.0.0.1
     port: 6379
@@ -13,7 +13,7 @@ spring:
     pool-max-idle: 10
     pool-max-total: 10
 mybatis:
-  type-aliases-package: com.comphca.counter.dao
+  type-aliases-package: com.comphca.mycounterback.dao
   # 下面的配置在对应的数据库表名驼峰对应，不然查出来为null
   configuration:
     map-underscore-to-camel-case: true

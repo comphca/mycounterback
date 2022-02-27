@@ -3,7 +3,9 @@ package com.comphca.mycounterback.controller;
 import com.comphca.mycounterback.cache.CacheType;
 import com.comphca.mycounterback.cache.RedisStringCache;
 import com.comphca.mycounterback.common.ServerResponse;
+import com.comphca.mycounterback.service.UserService;
 import com.comphca.mycounterback.vo.CaptchaVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,7 @@ import java.io.IOException;
 
 import com.comphca.mycounterback.utils.CaptchaUtils;
 import com.comphca.mycounterback.utils.myuuid;
+import sun.management.counter.perf.PerfInstrumentation;
 
 /**
  * @Created by comphca
@@ -20,6 +23,8 @@ import com.comphca.mycounterback.utils.myuuid;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
+    @Autowired
+    private UserService userService;
 
     /***********************获取验证码***************************/
     @RequestMapping("/captcha")
@@ -48,4 +53,13 @@ public class LoginController {
 
         return ServerResponse.cerateBySuccess("成功返回验证码",captcha);
     }
+
+
+    @RequestMapping("/userLogin")
+    public ServerResponse userLogin(long uid, String password, String captcha, String captchaId){
+        ServerResponse serverResponse = userService.login(uid,password,captcha,captchaId);
+        return serverResponse;
+    }
+
+
 }
