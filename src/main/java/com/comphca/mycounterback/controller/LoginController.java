@@ -7,6 +7,7 @@ import com.comphca.mycounterback.service.UserService;
 import com.comphca.mycounterback.vo.CaptchaVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -61,6 +62,10 @@ public class LoginController {
         return serverResponse;
     }
 
-
+    @RequestMapping("/userLogOut")
+    public ServerResponse userLogOut(@RequestParam("token") String token){
+        userService.logOut(token);
+        return ServerResponse.cerateBySuccessMessage("成功退出");
+    }
 
 }

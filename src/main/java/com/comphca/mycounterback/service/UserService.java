@@ -13,4 +13,6 @@ public interface UserService {
 
     //根据uid来更新操作员登录的时间
     void updatLoginDate(long uid);
+
+    void logOut(String token);
 }

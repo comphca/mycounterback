@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService {
     public void updatLoginDate(long uid) {
         userMapper.updateLoginDate(uid);
     }
+
+    @Override
+    public void logOut(String token) {
+        RedisStringCache.remove(token,CacheType.ACCOUNT);
+    }
 }
