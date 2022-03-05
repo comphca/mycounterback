@@ -6,6 +6,8 @@ import com.comphca.mycounterback.common.ServerResponse;
 import com.comphca.mycounterback.dao.UserMapper;
 import com.comphca.mycounterback.pojo.User;
 import com.comphca.mycounterback.service.UserService;
+import com.comphca.mycounterback.utils.JsonUtils;
+import com.comphca.mycounterback.utils.myuuid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,17 +49,22 @@ public class UserServiceImpl implements UserService {
             System.out.println("没有查到对应的用户");
             return ServerResponse.createByErrorMessage("用户名或密码错误");
         }
-        /*else {
+        else {
             //校验成功
             //1.先生成一个uuid唯一标志
             user.setToken(String.valueOf(myuuid.getInstance().getUUID()));
             //2.id放入缓存
-            //TODO 这里放入缓存的需要放整个对象，后面通过json进行序列化和反序列化
-            RedisStringCache.cache(user.getToken(),String.valueOf(uid),CacheType.ACCOUNT);
+            //这里放入缓存的需要放整个对象，后面通过json进行序列化和反序列化
+            RedisStringCache.cache(user.getToken(), JsonUtils.obj2String(user),CacheType.ACCOUNT);
             //3.更新登录时间
             updatLoginDate(uid);
-        }*/
+        }
 
         return ServerResponse.cerateBySuccess("登录成功",user);
+    }
+
+    @Override
+    public void updatLoginDate(long uid) {
+        userMapper.updateLoginDate(uid);
     }
 }

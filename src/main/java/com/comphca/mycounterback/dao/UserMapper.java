@@ -19,4 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectUserByIdAndPwd(@Param("uid") long uid, @Param("password") String password);
+
+    void updateLoginDate(long uid);
 }

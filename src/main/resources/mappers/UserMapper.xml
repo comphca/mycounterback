@@ -118,6 +118,7 @@
   </update>
 
 
+  <!--根据uid和password查询操作员-->
   <select id="selectUserByIdAndPwd" parameterType="map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -125,4 +126,13 @@
     where uid = #{uid,jdbcType=BIGINT}
     and password = #{password}
   </select>
+
+
+  <!--根据uid更新操作员登陆时间-->
+  <update id="updateLoginDate" parameterType="com.comphca.mycounterback.pojo.User" >
+    update t_user
+    set modifyDate = current_date ,
+        modifyTime = current_time
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
 </mapper>

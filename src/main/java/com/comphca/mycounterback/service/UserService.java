@@ -10,4 +10,7 @@ import com.comphca.mycounterback.pojo.User;
  */
 public interface UserService {
     ServerResponse<User> login(long uid, String password, String captcha, String captchaId);
+
+    //根据uid来更新操作员登录的时间
+    void updatLoginDate(long uid);
 }

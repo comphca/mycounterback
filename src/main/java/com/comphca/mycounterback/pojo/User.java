@@ -15,6 +15,17 @@ public class User {
 
     private Integer modifytime;
 
+    //标记操作员，无需记录到数据库
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public User(Long uid, String password, String status, String createdate, String createtime, Integer modifydate, Integer modifytime) {
         this.uid = uid;
         this.password = password;
