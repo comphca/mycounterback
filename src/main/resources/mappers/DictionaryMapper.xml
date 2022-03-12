@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comphca.mycounterback.dao.DictionaryMppper" >
+    <resultMap id="BaseResultMap" type="com.comphca.mycounterback.pojo.Dictionary" >
+        <constructor >
+            <arg column="sKeyValue" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="sKeyItem" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="sDescribe" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="sMemo" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+
+    </resultMap>
+    <sql id="Base_Column_List" >
+        L_KEYNO, C_KEYVALUE, VC_DESCRIBE, C_MEMO
+    </sql>
+
+
+    <select id="getDictionaryInfoByNo" resultType="java.util.Map" parameterType="string">
+        select
+        <include refid="Base_Column_List"></include>
+        from t_dictionary
+        where L_KEYNO = #{DictionaryNo}
+        AND C_KEYVALUE &lt;&gt; "#"
+    </select>
+
+    <select id="getDictionaryNoList" resultType="java.lang.String" >
+        select
+            L_KEYNO
+        from t_dictionary
+        where C_KEYVALUE = "#"
+    </select>
+
+
+    <select id="getAllDicNoDistinct" resultType="string" >
+        select
+            distinct L_KEYNO
+        from t_dictionary
+
+    </select>
+
+
+
+
+</mapper>
