@@ -34,15 +34,15 @@ public class UserServiceImpl implements UserService {
         }
 
         //校验验证码
-        String captchaCache = RedisStringCache.get(captchaId, CacheType.CAPTCHA);
-        if (StringUtils.isEmpty(captchaCache)){
-            return ServerResponse.createByErrorMessage("缓存的验证码超时");
-        }
-        if (!StringUtils.equalsIgnoreCase(captcha,captchaCache)){
-            return ServerResponse.createByErrorMessage("验证码错误");
-        }
-        //检查完验证码从缓存中清空验证码
-        RedisStringCache.remove(captchaId,CacheType.CAPTCHA);
+//        String captchaCache = RedisStringCache.get(captchaId, CacheType.CAPTCHA);
+//        if (StringUtils.isEmpty(captchaCache)){
+//            return ServerResponse.createByErrorMessage("缓存的验证码超时");
+//        }
+//        if (!StringUtils.equalsIgnoreCase(captcha,captchaCache)){
+//            return ServerResponse.createByErrorMessage("验证码错误");
+//        }
+//        //检查完验证码从缓存中清空验证码
+//        RedisStringCache.remove(captchaId,CacheType.CAPTCHA);
         //查询数据库判断
         User user = userMapper.selectUserByIdAndPwd(uid,password);
         if (user == null){

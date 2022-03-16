@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comphca.mycounterback.dao.CustInfoMppper" >
+    <resultMap id="CustInfoBaseResultMap" type="com.comphca.mycounterback.pojo.CustInfo" >
+        <constructor>
+            <arg column="VC_CUSTNO" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_customname" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="c_identitytype" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_identityno" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_birthday" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_tradeacco" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_bankacco" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_bankname" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_nameinbank" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_mobilephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_dealpwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vc_opendate" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+
+    </resultMap>
+    <sql id="Base_Column_List" >
+        VC_CUSTNO,    vc_customname,   c_identitytype,    vc_identityno,   vc_birthday,
+        vc_tradeacco, vc_bankacco,     vc_bankname,       vc_nameinbank,   vc_mobilephone,
+        vc_email,     vc_address,      vc_dealpwd,        vc_opendate
+    </sql>
+
+
+
+    <select id="getCustInfoByTradeAcco" resultMap="CustInfoBaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"></include>
+        from t_custinfo
+        where vc_tradeacco = #{sTradeAcco}
+    </select>
+
+
+
+
+
+
+</mapper>
