@@ -12,6 +12,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class CustInfo {
     private String sCustNo;
     private String sCustName;
@@ -27,4 +28,22 @@ public class CustInfo {
     private String sAddress;
     private String sDealPwd;
     private String sOpenDate;
+
+
+    public CustInfo(String sCustNo, String sCustName, String cIdentityType, String sIdentityNo, String sBirthDay,
+                    String sBankAcco, String sBankName, String sNameInBank, String sMobilePhone, String sEmail,
+                    String sAddress, String sDealPwd){
+        this.sCustNo = sCustNo;
+        this.sCustName = sCustName;
+        this.cIdentityType = cIdentityType;
+        this.sIdentityNo = sIdentityNo;
+        this.sBirthDay = sBirthDay;
+        this.sBankAcco = sBankAcco;
+        this.sBankName = sBankName;
+        this.sNameInBank = sNameInBank;
+        this.sMobilePhone = sMobilePhone;
+        this.sEmail = sEmail;
+        this.sAddress = sAddress;
+        this.sDealPwd = sDealPwd;
+    }
 }

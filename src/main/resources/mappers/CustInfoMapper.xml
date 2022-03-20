@@ -8,7 +8,7 @@
             <arg column="c_identitytype" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="vc_identityno" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="vc_birthday" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="vc_tradeacco" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <!--<arg column="vc_tradeacco" jdbcType="VARCHAR" javaType="java.lang.String" />-->
             <arg column="vc_bankacco" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="vc_bankname" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="vc_nameinbank" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -16,14 +16,14 @@
             <arg column="vc_email" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="vc_address" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="vc_dealpwd" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="vc_opendate" jdbcType="VARCHAR" javaType="java.lang.String" />
+
         </constructor>
 
     </resultMap>
     <sql id="Base_Column_List" >
         VC_CUSTNO,    vc_customname,   c_identitytype,    vc_identityno,   vc_birthday,
-        vc_tradeacco, vc_bankacco,     vc_bankname,       vc_nameinbank,   vc_mobilephone,
-        vc_email,     vc_address,      vc_dealpwd,        vc_opendate
+        <!--vc_tradeacco,--> vc_bankacco,     vc_bankname,       vc_nameinbank,   vc_mobilephone,
+        vc_email,     vc_address,      vc_dealpwd        <!--,vc_opendate-->
     </sql>
 
 
@@ -35,7 +35,85 @@
         where vc_tradeacco = #{sTradeAcco}
     </select>
 
+    <!--根据证件类型 证件号码  在custinfo表中判断是否有记录存在-->
+    <select id="isExistInByIdTypeAndIdNo" resultType="int" parameterType="map">
+        select
+        count(1)
+        from t_custinfo
+        where c_identitytype = #{sIdentityType}
+        and vc_identityno = #{sIdentityNo}
+    </select>
 
+
+
+    <!--往账户申请表中插入记录-->
+    <insert id="InsertAccoRequest" parameterType="map">
+        insert into
+        t_accorequest
+        (vc_requestno,      vc_custno,     vc_customname,    c_identitytype,   vc_identityno,
+         vc_birthday,       vc_bankacco,   vc_bankname,      vc_nameinbank,    vc_mobilephone,
+         vc_email,          vc_address,       vc_requestdate
+        )
+         values
+        (
+         #{requestno},   #{sCustno},    #{custName},    #{sIdentityType},  #{sIdentityNo},
+         #{vaildate},    #{bankacco},   #{bankname},    #{namaInBank},     #{mobilphone},
+         #{email},       #{address},    #{requestData}
+        )
+    </insert>
+
+
+
+    <!---->
+    <select id="getCustInfoByCustNoFormAccoRequest" resultMap="CustInfoBaseResultMap" parameterType="string">
+        select
+        <include refid="Base_Column_List"></include>
+        from t_accorequest
+        where vc_custno = #{custNo}
+    </select>
+
+
+    <update id="updateAccoRequestPwdByCustNo" parameterType="map">
+        update t_accorequest
+        set VC_DEALPWD = #{pwd}
+        where VC_CUSTNO = #{custNo}
+    </update>
+
+    <delete id="deleteFromAccoRequestByCustNo" parameterType="string">
+        delete from t_accorequest
+        where VC_CUSTNO = #{custNo}
+    </delete>
+
+
+
+
+    <!--,  date_format(now(), '%Y%m%d')-->
+
+    <insert id="insertCustInfo" parameterType="map">
+        insert into
+            t_custinfo
+        (vc_custno,     vc_customname,    c_identitytype,   vc_identityno,
+         vc_birthday,       vc_bankacco,   vc_bankname,      vc_nameinbank,    vc_mobilephone,
+         vc_email,          vc_address ,vc_dealpwd,vc_opendate
+        )
+        values
+        (
+            #{sCustNo},    #{sCustName},    #{cIdentityType},  #{sIdentityNo},
+            #{sBirthDay},    #{sBankAcco},   #{sBankName},    #{sNameInBank},     #{sMobilePhone},
+            #{sEmail},       #{sAddress},    #{sDealPwd},date_format(now(), '%Y%m%d')
+        )
+    </insert>
+
+
+
+    <select id="getCustNoSeq" resultType="int">
+        SELECT nextval_test('CUSTNOSEQ');
+    </select>
+
+
+    <select id="getRequestNoSeq" resultType="int">
+        SELECT nextval_test('REQUESTNOSEQ');
+    </select>
 
 
 
