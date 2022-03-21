@@ -92,10 +92,23 @@ public class CustServiceImpl implements CustService {
         return ServerResponse.cerateBySuccessMessage("开户成功");
     }
 
+    @Override
+    public ServerResponse queryCustInfoBuyCustNoAndPwd(String custno, String pwd) {
+        CustInfo custInfo = custInfoMppper.getCustInfo(custno,pwd);
+        if (custInfo == null){
+            return ServerResponse.createByErrorMessage("客户编号或密码错误");
+        }
+        return ServerResponse.createBySuccess(custInfo);
+    }
+
 
     public int generatorCustNo(){
         return custInfoMppper.getCustNoSeq();
     }
+
+
+
+
 
 
 }

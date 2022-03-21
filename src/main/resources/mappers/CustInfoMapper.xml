@@ -20,10 +20,22 @@
         </constructor>
 
     </resultMap>
+    <resultMap id="custNo_balance" type="com.comphca.mycounterback.pojo.CustInfo">
+        <constructor>
+            <arg column="VC_CUSTNO" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="VC_BALANCE" jdbcType="BIGINT" javaType="java.lang.Long" />
+            <arg column="vc_customname" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+
+    </resultMap>
     <sql id="Base_Column_List" >
         VC_CUSTNO,    vc_customname,   c_identitytype,    vc_identityno,   vc_birthday,
         <!--vc_tradeacco,--> vc_bankacco,     vc_bankname,       vc_nameinbank,   vc_mobilephone,
         vc_email,     vc_address,      vc_dealpwd        <!--,vc_opendate-->
+    </sql>
+
+    <sql id="custNo_balance" >
+        VC_CUSTNO, VC_BALANCE, vc_customname
     </sql>
 
 
@@ -103,6 +115,16 @@
             #{sEmail},       #{sAddress},    #{sDealPwd},date_format(now(), '%Y%m%d')
         )
     </insert>
+
+
+
+    <select id="getCustInfo" resultMap="custNo_balance" parameterType="map">
+        select
+        <include refid="custNo_balance"></include>
+        from t_custinfo
+        where vc_custno = #{custno}
+        and vc_dealpwd = #{pwd}
+    </select>
 
 
 

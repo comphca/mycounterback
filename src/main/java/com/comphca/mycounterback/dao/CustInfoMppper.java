@@ -37,4 +37,6 @@ public interface CustInfoMppper {
     int updateAccoRequestPwdByCustNo(@Param("custNo") String custNo, @Param("pwd") String pwd);
 
     void deleteFromAccoRequestByCustNo(String custNo);
+
+    CustInfo getCustInfo(@Param("custno") String custno, @Param("pwd") String pwd);
 }

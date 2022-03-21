@@ -28,6 +28,7 @@ public class CustInfo {
     private String sAddress;
     private String sDealPwd;
     private String sOpenDate;
+    private long balance;
 
 
     public CustInfo(String sCustNo, String sCustName, String cIdentityType, String sIdentityNo, String sBirthDay,
@@ -45,5 +46,11 @@ public class CustInfo {
         this.sEmail = sEmail;
         this.sAddress = sAddress;
         this.sDealPwd = sDealPwd;
+    }
+
+    public CustInfo(String sCustNo, Long balance,String sCustName){
+        this.sCustNo = sCustNo;
+        this.balance = balance;
+        this.sCustName = sCustName;
     }
 }

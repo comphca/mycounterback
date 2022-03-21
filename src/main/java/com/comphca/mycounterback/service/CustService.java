@@ -13,4 +13,6 @@ public interface CustService {
             , String mobilphone, String address, String email);
 
     ServerResponse InsertCustInfo(String custNo,String pwd);
+
+    ServerResponse queryCustInfoBuyCustNoAndPwd(String custno, String pwd);
 }
