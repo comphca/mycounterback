@@ -1,7 +1,10 @@
 package com.comphca.mycounterback.dao;
 
+import com.comphca.mycounterback.vo.TradeInfoVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Created by comphca
@@ -16,6 +19,10 @@ public interface TradeMapper {
                         @Param("status") String status, @Param("explain") String explain);
 
     String getTradeInfo(String sCustNo);
+
+
+    /*查询当日委托数据*/
+    List<TradeInfoVo> selectCurrentDateTrade();
 }
 
 

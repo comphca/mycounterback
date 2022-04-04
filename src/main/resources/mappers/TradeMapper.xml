@@ -14,6 +14,18 @@
         </constructor>
       </resultMap>
 
+      <resultMap id="TradeVOInfo" type="com.comphca.mycounterback.vo.TradeInfoVo">
+          <constructor>
+              <arg column="VC_REQUESTDATE" jdbcType="VARCHAR" javaType="java.lang.String"></arg>
+              <arg column="VC_CODE" jdbcType="VARCHAR" javaType="java.lang.String"></arg>
+              <arg column="VC_FUNDNAME" jdbcType="VARCHAR" javaType="java.lang.String"></arg>
+              <arg column="EN_REQUESTBALANCE" jdbcType="BIGINT" javaType="java.lang.Long"></arg>
+              <arg column="C_DIRECTION" jdbcType="VARCHAR" javaType="java.lang.String"></arg>
+              <arg column="C_STATUS" jdbcType="VARCHAR" javaType="java.lang.String"></arg>
+          </constructor>
+      </resultMap>
+
+
 
 
     <insert id="insertTradeInfo" parameterType="map">
@@ -33,6 +45,14 @@
         vc_custno
         from t_request
         where vc_customname = #{sCustNo}
+    </select>
+
+
+
+
+    <select id="selectCurrentDateTrade" resultMap="TradeVOInfo">
+        select t1.VC_REQUESTDATE,t1.VC_CODE,t2.VC_FUNDNAME,t1.EN_REQUESTBALANCE,t1.C_DIRECTION,t1.C_STATUS
+        from t_request t1,t_stock t2 where t1.VC_CODE = t2.VC_CODE and t1.vc_requestdate = date_format(now(), '%Y%m%d')
     </select>
 
 
