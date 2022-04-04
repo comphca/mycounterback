@@ -3,6 +3,7 @@ package com.comphca.mycounterback.controller.front;
 import com.comphca.mycounterback.cache.StockCache;
 import com.comphca.mycounterback.common.ServerResponse;
 import com.comphca.mycounterback.service.CustService;
+import com.comphca.mycounterback.service.TradeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ public class Allot {
 
     @Autowired
     private CustService custService;
+    @Autowired
+    private TradeService tradeService;
 
     @Autowired
     private StockCache stockCache;
@@ -40,5 +43,11 @@ public class Allot {
     public ServerResponse sotckQuery(@RequestParam String key) {
         System.out.println("code controller");
         return stockCache.getStock(key);
+    }
+
+    @RequestMapping("/doAllot")
+    public ServerResponse doAllot(String custno,String fundcode,String direction,Long requestBalance){
+        /*调用申购服务*/
+        return tradeService.allotService(custno,fundcode,direction,requestBalance);
     }
 }

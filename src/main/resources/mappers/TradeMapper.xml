@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comphca.mycounterback.dao.TradeMapper" >
+      <resultMap id="TradeBaseResultMap" type="com.comphca.mycounterback.pojo.TradeInfo" >
+        <constructor >
+          <idArg column="VC_CUSTNO" jdbcType="VARCHAR" javaType="java.lang.String" />
+          <arg column="vc_customname" jdbcType="VARCHAR" javaType="java.lang.String" />
+          <arg column="vc_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+          <arg column="en_requestBalance" jdbcType="BIGINT" javaType="java.lang.Long" />
+          <arg column="en_requestShare" jdbcType="BIGINT" javaType="java.lang.Long" />
+          <arg column="VC_TRADEDATE" jdbcType="VARCHAR" javaType="java.lang.String" />
+          <arg column="C_STATUS" jdbcType="VARCHAR" javaType="java.lang.String" />
+          <arg column="VC_EXPLAIN" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+      </resultMap>
+
+
+
+    <insert id="insertTradeInfo" parameterType="map">
+        insert into t_request
+        (vc_requestno, vc_custno, vc_code, vc_customname, c_direction,
+         en_requestBalance, c_status, vc_requestdate, vc_requesttime,
+         vc_explain)
+        values
+        (#{requestno},#{custno},#{code},#{customname},#{direction},
+         #{requestBalance},#{status},date_format(now(), '%Y%m%d'),date_format(now(),'%H%i%S'),
+         #{explain})
+    </insert>
+
+
+    <select id="getTradeInfo" resultType="string" parameterType="string">
+        select
+        vc_custno
+        from t_request
+        where vc_customname = #{sCustNo}
+    </select>
+
+
+
+
+
+</mapper>
+
+
+
+

@@ -138,6 +138,15 @@
     </select>
 
 
+    <select id="getCustInfoByCustNo" resultMap="custNo_balance" parameterType="string">
+        select
+        <include refid="custNo_balance"></include>
+        from t_custinfo
+        where vc_custno = #{custno}
+    </select>
+
+
+
 
 
 </mapper>

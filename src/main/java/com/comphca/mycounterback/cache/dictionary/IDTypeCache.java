@@ -3,7 +3,7 @@ package com.comphca.mycounterback.cache.dictionary;
 import com.comphca.mycounterback.common.ServerResponse;
 import com.comphca.mycounterback.dao.DictionaryMppper;
 import com.google.common.collect.HashMultimap;
-import javafx.util.converter.ShortStringConverter;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
