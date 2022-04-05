@@ -56,6 +56,21 @@
     </select>
 
 
+    <select id="queryHisTrade" resultMap="TradeVOInfo" parameterType="map">
+        select t1.VC_REQUESTDATE,t1.VC_REQUESTTIME,t1.VC_CODE,t2.VC_FUNDNAME,t1.EN_REQUESTBALANCE,t1.C_DIRECTION,t1.C_STATUS
+        from t_request t1,t_stock t2 where t1.VC_CODE = t2.VC_CODE
+            <if test="fundcode != '' and fundcode != null ">
+                and t1.vc_code = #{fundcode}
+            </if>
+            <if test="begindate != '' and begindate != null  ">
+                and t1.vc_requestdate  &gt;=#{begindate}
+            </if>
+            <if test="enddate != '' and enddate != null ">
+                and t1.vc_requestdate  &lt;=#{enddate}
+            </if>
+    </select>
+
+
 
 
 

@@ -21,7 +21,7 @@ mybatis:
 
 logging:
   level:
-    com.comphca.counter.dao: debug
+    com.comphca.mycounterback.dao: debug
 
 #缓存过期时间,cacheexpire等都是自定义的，单位都是秒
 cacheexpire:

@@ -23,6 +23,8 @@ public interface TradeMapper {
 
     /*查询当日委托数据*/
     List<TradeInfoVo> selectCurrentDateTrade();
+
+    List<TradeInfoVo> queryHisTrade(@Param("fundcode") String fundcode, @Param("begindate") String begindate, @Param("enddate") String enddate);
 }
 
 

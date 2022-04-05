@@ -9,4 +9,6 @@ import com.comphca.mycounterback.common.ServerResponse;
  */
 public interface QueryService {
     ServerResponse queryCurrentDateTrade();
+
+    ServerResponse queryHisTrade(String fundcode,String startdate, String enddate);
 }

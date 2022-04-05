@@ -19,4 +19,10 @@ public class QueryServiceImpl implements QueryService {
     public ServerResponse queryCurrentDateTrade() {
         return ServerResponse.createBySuccess(tradeMapper.selectCurrentDateTrade());
     }
+
+    @Override
+    public ServerResponse queryHisTrade(String fundcode,String startdate, String enddate) {
+        System.out.println("日期："+startdate+"-----"+enddate);
+        return ServerResponse.createBySuccess(tradeMapper.queryHisTrade(fundcode,startdate,enddate));
+    }
 }

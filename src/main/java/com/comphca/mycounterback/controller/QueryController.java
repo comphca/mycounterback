@@ -3,6 +3,7 @@ package com.comphca.mycounterback.controller;
 import com.comphca.mycounterback.common.ServerResponse;
 import com.comphca.mycounterback.service.QueryService;
 import com.comphca.mycounterback.service.impl.QueryServiceImpl;
+import org.omg.PortableInterceptor.ServerRequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +21,10 @@ public class QueryController {
     @RequestMapping("/queryCurrentDateTrade")
     public ServerResponse queryCurrentDateTrade(){
         return queryService.queryCurrentDateTrade();
+    }
+
+    @RequestMapping("/queryHisTrade")
+    public ServerResponse queryHisTrade(String fundcode, String startdate, String enddate){
+        return queryService.queryHisTrade(fundcode,startdate,enddate);
     }
 }
