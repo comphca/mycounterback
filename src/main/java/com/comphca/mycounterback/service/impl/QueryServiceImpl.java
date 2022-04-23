@@ -25,4 +25,9 @@ public class QueryServiceImpl implements QueryService {
         System.out.println("日期："+startdate+"-----"+enddate);
         return ServerResponse.createBySuccess(tradeMapper.queryHisTrade(fundcode,startdate,enddate));
     }
+
+    @Override
+    public ServerResponse quertFundMarketByCode(String code) {
+        return ServerResponse.createBySuccess(tradeMapper.queryFundMarket(code));
+    }
 }

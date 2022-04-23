@@ -72,6 +72,17 @@
 
 
 
+    <select id="queryFundMarket" resultType="map" parameterType="string">
+        select t1.vc_date,t1.en_nav
+        from t_fundmarket t1 where t1.VC_CODE = #{code}
+        order by vc_date desc limit 5
+    </select>
+
+
+
+
+
+
 
 
 </mapper>

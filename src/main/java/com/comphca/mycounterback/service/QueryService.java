@@ -11,4 +11,6 @@ public interface QueryService {
     ServerResponse queryCurrentDateTrade();
 
     ServerResponse queryHisTrade(String fundcode,String startdate, String enddate);
+
+    ServerResponse quertFundMarketByCode(String code);
 }

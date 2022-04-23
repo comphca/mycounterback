@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Created by comphca
@@ -25,6 +26,8 @@ public interface TradeMapper {
     List<TradeInfoVo> selectCurrentDateTrade();
 
     List<TradeInfoVo> queryHisTrade(@Param("fundcode") String fundcode, @Param("begindate") String begindate, @Param("enddate") String enddate);
+
+    List<Map<String,Float>> queryFundMarket(String code);
 }
 
 
